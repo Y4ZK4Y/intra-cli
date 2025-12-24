@@ -1,0 +1,39 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta
+
+
+[project]
+name = "intra-cli-tool"
+version = "0.0.0"
+description = "CLI tools for accessing 42 intra"
+authors = ["yours truly hehe"]
+requires-python = ">=3.8"
+readme = "README.md"
+
+dependencies = [
+    "typer>=0.9.0",
+    "rich>=13.0.0",
+    "requests>=2.31.0",
+    "pydantic>=2.0.0,<3.0.0",
+    "python-dotenv>=1.0.0",
+    "requests-oaiuthlib>=1.3.0",
+]
+
+
+[project.optional-dependancies]
+dev = [
+    "black",
+    "pytest",
+    "ruff",
+]
+
+
+
+[tool.black]
+[tool.pytest] 
+[tool.ruff] 
+
+
+[project.scripts]
+intra = "intra_cli.main:app"
