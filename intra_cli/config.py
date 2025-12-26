@@ -5,7 +5,7 @@ import os
 from pathlib import Path
 from dotenv import load_dotenv
 import json
-
+from typing import Optional
 
 class Config:
     def __init__(self):
@@ -17,7 +17,6 @@ class Config:
         self.config_dire.mkdir(parents=True, exist_ok=True) 
 
         self._config = self._load_config()
-
 
 
     def _load_config(self) -> dict:
@@ -60,16 +59,10 @@ class Config:
     def has_token(self) -> bool:
         return self.access_token is not None
 
-
-
-
 _config_instance = None
-
 
 def get_config() -> Config:
     global _config_instance
     if _config_instance is None:
         _config_instance = Config
     return _config_instance
-
-
