@@ -14,7 +14,7 @@ class Config:
         self.config_dir = Path.home() / ".config" / "intra-cli"
         self.config_file = self.config_dir / "config.json"
 
-        self.config_dire.mkdir(parents=True, exist_ok=True) 
+        self.config_dir.mkdir(parents=True, exist_ok=True) 
 
         self._config = self._load_config()
 
@@ -30,7 +30,7 @@ class Config:
 
     def _save_config(self):
         with open(self.config_file, 'w') as f:
-            json.dump(self.config_file, f, indent=2)
+            json.dump(self._config, f, indent=2)
 
     @property
     def client_id(self) -> Optional[str]:
@@ -42,7 +42,7 @@ class Config:
 
     @property
     def api_base_url(self) -> Optional[str]:
-        return os.getenv("INTA_API_BASE_URL")
+        return os.getenv("INTRA_API_BASE_URL")
 
     @property
     def access_token(self) -> Optional[str]:
@@ -64,5 +64,5 @@ _config_instance = None
 def get_config() -> Config:
     global _config_instance
     if _config_instance is None:
-        _config_instance = Config
+        _config_instance = Config()
     return _config_instance

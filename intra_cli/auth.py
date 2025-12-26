@@ -1,4 +1,4 @@
-from intra_cli.config import Config
+from intra_cli.config import get_config
 from typing import Optional
 import requests
 
@@ -15,7 +15,7 @@ def get_access_token() -> Optional[str]:
                 "client_id": config.client_id,
                 "client_secret": config.client_secret
             },
-            timeout=15
+            timeout=30
         )
         response.raise_for_status()
 
@@ -29,7 +29,7 @@ def get_access_token() -> Optional[str]:
         else:
             return None
         
-    except requests.exceptions.requestExceptiopn as e:
+    except requests.exceptions.RequestException as e:
         raise Exception(f"{e}")
 
 
@@ -37,5 +37,5 @@ def is_token_good() -> str:
     config = get_config()
     if config.has_token():
         return config.access_token
-    else
+    else:
         return get_access_token()
